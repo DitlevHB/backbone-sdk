@@ -42,7 +42,7 @@ program
   .usage("<command> [options]")
   .command("create")
   .option("--skipUpdate", "Skip checking for update of Backbone SDK")
-  .option("-d, --directory <projectdir>", "Where do you want the project?")
+  .option("-d, --directory <projectdir>", "Directory for the new project")
   .option("--force", "Ignores all safety checks, be careful")
   .description("Create a new Backbone project")
   .action(async (options) => {
