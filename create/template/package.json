@@ -1,0 +1,17 @@
+{
+  "name": "backbone-app",
+  "version": "1.0.0",
+  "description": "Backbone App",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "npx playwright test test/**.spec.js"
+  },
+  "keywords": [],
+  "license": "AGPL-3.0-or-later",
+  "dependencies": {
+    "@backbonedao/core": "github:backbonedao/crypto"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.20.2"
+  }
+}
