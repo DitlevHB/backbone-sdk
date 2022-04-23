@@ -1,7 +1,15 @@
 {
-  "@id": "",
-  "project_name": "",
-  "description": "",
-  "website": "",
-  "git": ""
+  "project": {
+    "@id": "",
+    "project_name": "",
+    "description": "",
+    "website": "",
+    "git": ""
+  },
+  "settings": {
+    "address": "",
+    "encryption_key": "",
+    "private": false,
+    "storage": "ram"
+  }
 }

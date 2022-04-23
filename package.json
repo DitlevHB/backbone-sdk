@@ -4,7 +4,7 @@
   "description": "core/sdk",
   "scripts": {
     "test": "tape test/test.js",
-    "build": "rimraf ./dist && tsc && cp package.json dist",
+    "build": "rimraf ./dist && tsc",
     "postinstall": "npm link"
   },
   "bin": {
@@ -34,6 +34,7 @@
   },
   "homepage": "https://github.com/backbonedao/sdk#readme",
   "dependencies": {
+    "@backbonedao/crypto": "github:backbonedao/crypto",
     "axios": "^0.26.1",
     "commander": "^9.1.0",
     "exec-sh": "^0.4.0",

@@ -35,8 +35,8 @@ function printLogo() {
       "\n\n"
   )
 }
-
-program.version(require("./package.json").version)
+// const version = require("./package.json").version
+// program.version(version)
 
 program
   .usage("<command> [options]")

@@ -24,7 +24,6 @@ function printLogo() {
     terminal.green("╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚══════╝   ╚═╝ ╚═╝    " +
         "\n\n");
 }
-commander_1.program.version(require("./package.json").version);
 commander_1.program
     .usage("<command> [options]")
     .command("create")

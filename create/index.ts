@@ -1,6 +1,7 @@
 import { log } from "../helper"
 import fs from "../utils/fs-extra"
 const { exec } = require("child_process")
+import { randomBytes, createHash } from '@backbonedao/crypto'
 
 async function task(opts: {
   dir: string
@@ -20,8 +21,9 @@ async function task(opts: {
   await fs.writeFileAsync(dir + "/package.json", JSON.stringify(pkg, null, 2))
 
   const bb = require(dir + "/backbone.json")
-  bb.name = name || "backbone-app"
-  bb.description = description || "Backbone App"
+  bb.project.name = name || "backbone-app"
+  bb.project.description = description || "Backbone App"
+  bb.settings.encryption_key = createHash(randomBytes(32))
   await fs.writeFileAsync(dir + "/backbone.json", JSON.stringify(bb, null, 2))
 
   // install dependencies
@@ -29,18 +31,29 @@ async function task(opts: {
   const cmd = `cd ${dir} && npm install`
   return new Promise((resolve, reject) => {
     const npm = exec(cmd)
-
+    let errors = false
     npm.stderr.on("data", (data) => {
       log(`${data}`, null, 'red')
+      if(data.match(/npm ERR/)) errors = true
+    })
+    npm.stdout.on("data", (data) => {
+      log(`${data}`)
     })
 
     npm.on("close", (code) => {
       resolve(true)
-      log('Project initialized!')
-      log('\nFor documentation, go to https://devs.backbonedao.com. Have fun!')
+      if(!errors) {
+        log('Project initialized!')
+        log('\nFor documentation, go to https://devs.backbonedao.com. Have fun!')
+      }
       process.exit(0)
     })
   })
 }
+
+process.on('SIGINT', function() {
+  console.log("Caught interrupt signal")
+  process.exit()
+});
 
 export default task
