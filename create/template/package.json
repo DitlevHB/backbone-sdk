@@ -5,9 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "test": "npx playwright test test/**.spec.js",
-    "build:browser:dev": "mkdir -p dist && browserify --debug src/index.js > dist/app.dev.js",
     "build:browser:watch": "budo src/index.js --live",
-    "build:browser": "mkdir -p dist && browserify src/index.js > dist/core.js && uglifyjs dist/core.js --compress --mangle > dist/core.min.js"
+    "build:browser:full": "mkdir -p dist && browserify src/index.js > dist/exe.js && uglifyjs dist/exe.js --compress --mangle > dist/exe.min.js",
+    "build:browser:app": "mkdir -p dist && browserify src/app/index.js > dist/app.js && uglifyjs dist/app.js --compress --mangle > dist/app.min.js"
   },
   "keywords": [],
   "license": "AGPL-3.0-or-later",
