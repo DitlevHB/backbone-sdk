@@ -1,7 +1,7 @@
 import { log } from "../helper"
 import fs from "../utils/fs-extra"
 const { exec } = require("child_process")
-import { randomBytes, createHash } from '@backbonedao/crypto'
+import { randomBytes, createHash, buf2hex } from '@backbonedao/crypto'
 
 async function task(opts: {
   dir: string
@@ -44,7 +44,7 @@ async function task(opts: {
       resolve(true)
       if(!errors) {
         log('Project initialized!')
-        log('\nFor documentation, go to https://devs.backbonedao.com. Have fun!')
+        log('\nFor documentation, go to docs (https://devs.backbonedao.com) or have a chat at Discord (https://dsc.gg/backbonedao). Have fun!')
       }
       process.exit(0)
     })

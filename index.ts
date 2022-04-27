@@ -4,7 +4,8 @@ import { program } from "commander"
 import { log, term } from "./helper"
 import { checkUpdate } from "./utils/check-update"
 import getCurrentProject from "./utils/get-current-project"
-import createProject from "./create"
+import getExistingFiles from "./utils/existing-files"
+import initProject from "./init"
 import compileProject from "./compile"
 
 const terminal = term()
@@ -47,7 +48,7 @@ async function common() {
 program.usage("<command> [options]")
 
 program
-  .command("create")
+  .command("init")
   .option("--skipUpdate", "Skip checking for update of Backbone SDK")
   .option("-d, --directory <projectdir>", "Directory for the new project")
   .option("--force", "Ignores all safety checks, be careful")
@@ -64,6 +65,19 @@ program
       if (!options.force) process.exit(1)
     }
 
+    if (getExistingFiles(dir) > 0) {
+      log(
+        `> This directory doesn't seem to be empty, are you sure you want to create project here? [y/N]: `,
+        true,
+        "yellow"
+      )
+      const cont = await terminal.inputField().promise
+      if (cont === "N" || !cont) {
+        log(`\n`)
+        process.exit(1)
+      }
+    }
+
     if (!options.name) {
       log("> Enter project name (backbone-app): ", true)
       options.name = await terminal.inputField().promise
@@ -76,7 +90,7 @@ program
       log()
     }
 
-    await createProject({ dir, ...options })
+    await initProject({ dir, ...options })
     process.exit(0)
   })
 
@@ -115,3 +129,17 @@ if (!program.args.length) {
   printLogo()
   program.outputHelp()
 }
+
+function terminate() {
+  terminal.grabInput(false)
+  setTimeout(function () {
+    process.exit()
+  }, 100)
+}
+
+terminal.on("key", function (name, matches, data) {
+  if (name === "CTRL_C") {
+    console.log()
+    terminate()
+  }
+})
