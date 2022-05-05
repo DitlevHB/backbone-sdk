@@ -76,6 +76,7 @@ program
         log(`\n`)
         process.exit(1)
       }
+      log(`\n`)
     }
 
     if (!options.name) {

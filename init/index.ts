@@ -1,7 +1,7 @@
 import { log } from "../helper"
 import fs from "../utils/fs-extra"
 const { exec } = require("child_process")
-import { randomBytes, createHash, buf2hex } from '@backbonedao/crypto'
+import { randomBytes, createHash, buf2hex } from "@backbonedao/crypto"
 
 async function task(opts: {
   dir: string
@@ -23,7 +23,7 @@ async function task(opts: {
   const bb = require(dir + "/backbone.json")
   bb.project.name = name || "backbone-app"
   bb.project.description = description || "Backbone App"
-  bb.settings.encryption_key = createHash(randomBytes(32))
+  bb.settings.encryption_key = createHash(randomBytes(32)).slice(0, 32)
   await fs.writeFileAsync(dir + "/backbone.json", JSON.stringify(bb, null, 2))
 
   // install dependencies
@@ -33,8 +33,10 @@ async function task(opts: {
     const npm = exec(cmd)
     let errors = false
     npm.stderr.on("data", (data) => {
-      log(`${data}`, null, 'red')
-      if(data.match(/npm ERR/)) errors = true
+      if (data.match(/npm ERR/)) {
+        log(`${data}`, null, "red")
+        errors = true
+      }
     })
     npm.stdout.on("data", (data) => {
       log(`${data}`)
@@ -42,18 +44,19 @@ async function task(opts: {
 
     npm.on("close", (code) => {
       resolve(true)
-      if(!errors) {
-        log('Project initialized!')
-        log('\nFor documentation, go to docs (https://devs.backbonedao.com) or have a chat at Discord (https://dsc.gg/backbonedao). Have fun!')
+      if (!errors) {
+        log("Project initialized!")
+        log(
+          "\nFor documentation, go to docs (https://devs.backbonedao.com) or have a chat at Discord (https://dsc.gg/backbonedao). Have fun!"
+        )
       }
       process.exit(0)
     })
   })
 }
 
-process.on('SIGINT', function() {
-  console.log("Caught interrupt signal")
+process.on("SIGINT", function () {
   process.exit()
-});
+})
 
 export default task
