@@ -7,6 +7,8 @@ import getCurrentProject from "./utils/get-current-project"
 import getExistingFiles from "./utils/existing-files"
 import initProject from "./init"
 import compileProject from "./compile"
+import deployProject from "./deploy"
+import serveProject from "./serve"
 
 const terminal = term()
 
@@ -47,6 +49,7 @@ async function common() {
 
 program.usage("<command> [options]")
 
+// INIT
 program
   .command("init")
   .option("--skipUpdate", "Skip checking for update of Backbone SDK")
@@ -95,6 +98,7 @@ program
     process.exit(0)
   })
 
+// COMPILE
 program
   .command("compile")
   .description("Compile Backbone app")
@@ -107,7 +111,7 @@ program
     const currentProject = getCurrentProject(dir)
     if (!currentProject) {
       log(
-        `Please run compile on the root of the Backbone app project dir`,
+        `Please run this command on the root of the Backbone app project dir`,
         false,
         "red"
       )
@@ -118,6 +122,50 @@ program
     process.exit(0)
   })
 
+// DEPLOY
+program
+  .command("deploy")
+  .description("Deploy Backbone app")
+  .option("-s, --signature <signature>", "Signature of the app checksum")
+  .action(async (options) => {
+    await common()
+
+    const current_project = getCurrentProject(process.cwd())
+    if (!current_project) {
+      log(
+        `Please run this command on the root of the Backbone app project dir`,
+        false,
+        "red"
+      )
+      if (!options.force) process.exit(1)
+    }
+
+    await deployProject({ current_project, ...options })
+    process.exit(0)
+  })
+
+// SERVE
+program
+  .command("serve")
+  .description("Serve Backbone app")
+  .action(async (options) => {
+    await common()
+
+    const current_project = getCurrentProject(process.cwd())
+    if (!current_project) {
+      log(
+        `Please run this command on the root of the Backbone app project dir`,
+        false,
+        "red"
+      )
+      if (!options.force) process.exit(1)
+    }
+
+    await serveProject({ current_project, ...options })
+    // process.exit(0)
+  })
+
+// CATCH-ALL
 program.on("command:*", (cmd) => {
   printLogo()
   program.outputHelp()
