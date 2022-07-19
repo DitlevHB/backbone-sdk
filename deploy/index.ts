@@ -1,0 +1,90 @@
+import { log } from "../helper"
+const { exec } = require("child_process")
+const fs = require("fs")
+const { buf2hex, createHash } = require("@backbonedao/crypto")
+const AppLoader = require("./apploader")
+const { Core } = require("../../core-alpha/dist/node")
+const { pack, unpack } = require("msgpackr")
+const { verifySig } = require("../../bootloader")
+const Buffer = require("b4a")
+
+async function task(opts: {
+  signature?: string
+  current_project: any
+  update_registry?: boolean
+}) {
+  let { signature, current_project, update_registry } = { ...opts }
+  if (!fs.existsSync(`${current_project.cwd}/dist/app.min.js`)) {
+    return log(
+      `No compiled app found, please run 'compile' first.`,
+      false,
+      "red"
+    )
+  }
+  const app = fs.readFileSync(
+    `${current_project.cwd}/dist/app.min.js`,
+    "utf-8"
+  )
+  let ui = fs.readFileSync(
+    `${current_project.cwd}/dist/ui.min.js`,
+    "utf-8"
+  )
+  if(!ui) ui = ""
+  const checksum = buf2hex(createHash(app + ui))
+
+  if (!signature) {
+    log(`Checksum for signing: ${checksum}`)
+    log(
+      `Instructions: Go to your Backbone Id (https://id.backbonedao.com) and either create a new app or update for an app. Input above checksum where asked.`
+    )
+  } else {
+    log(`Verify signature...`)
+    // check signature
+    if (signature.length === 130) signature = "0x" + signature
+    if (signature.length !== 132) return log(`Invalid signature.`, false, "red")
+    const is_valid_address = await verifySig({
+      code: { checksum, signature },
+      address: current_project.settings.address,
+    })
+    if (!is_valid_address) {
+      return log(`Signature verification failed.`, false, "red")
+    }
+    log(`Creating/updating container...`)
+    // Open Core with AppLoader app
+    const apploader_core = await Core({
+      config: {
+        address: current_project.settings.address,
+        encryption_key: current_project.settings.encryption_key,
+      },
+      app: AppLoader,
+    })
+    await apploader_core._setMeta({
+      key: "code",
+      value: {
+        app,
+        ui,
+        signature,
+      },
+    })
+    const ccode = await apploader_core._getMeta("code")
+    if (!ccode) return log(`Container code failed to save.`, false, "red")
+    // const unpacked_code = unpack(ccode)
+    if (buf2hex(createHash(ccode.app + ccode.ui)) !== buf2hex(createHash(app + ui)))
+      return log(`Container code mismatch from original code.`, false, "red")
+    log(
+      `Deploying container to backbone://${current_project.settings.address}...`
+    )
+
+    if (update_registry) {
+      log(`Registering new version into Backbone App Registry...`)
+      // TODO: Create contract call and send it
+    }
+
+    log(`All done 🥳`)
+    log(
+      `Tip: To propagate new code to app users, run 'backbone serve ${current_project.settings.address}'`
+    )
+  }
+}
+
+export default task
