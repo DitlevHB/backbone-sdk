@@ -21,9 +21,9 @@ async function task(opts: {
   await fs.writeFileAsync(dir + "/package.json", JSON.stringify(pkg, null, 2))
 
   const bb = require(dir + "/backbone.json")
-  bb.project.name = name || "backbone-app"
-  bb.project.description = description || "Backbone App"
-  bb.settings.encryption_key = createHash(randomBytes(32)).slice(0, 32)
+  bb.app.name = name || "backbone-app"
+  bb.app.description = description || "Backbone App"
+  // bb.settings.encryption_key = createHash(randomBytes(32)).slice(0, 32)
   await fs.writeFileAsync(dir + "/backbone.json", JSON.stringify(bb, null, 2))
 
   // install dependencies
@@ -46,6 +46,7 @@ async function task(opts: {
       resolve(true)
       if (!errors) {
         log("Project initialized!")
+        log("\nGo to your Id (https://id.backbonedao.com) to bind app to your id and to get app address.")
         log(
           "\nFor documentation, go to docs (https://devs.backbonedao.com) or have a chat at Discord (https://dsc.gg/backbonedao). Have fun!"
         )

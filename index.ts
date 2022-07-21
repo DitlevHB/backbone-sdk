@@ -148,6 +148,8 @@ program
 program
   .command("serve")
   .description("Serve Backbone app")
+  .option("-l, --local", "Use local instance of the app (useful for dev)")
+  .option("-a, --address <address>", "Use this to set local address when -l is used")
   .action(async (options) => {
     await common()
 
