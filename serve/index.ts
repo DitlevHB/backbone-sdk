@@ -1,8 +1,7 @@
 import { log } from "../helper"
 import { Core } from "../../core-alpha/dist/node"
-// import BB from "../../core-alpha"
-// const Core = BB.Core
-import { unpack } from "msgpackr"
+import fs from "fs"
+import crypto from "@backbonedao/crypto"
 
 const Bootloader = {
   API: async function (Data, Protocol) {
@@ -33,13 +32,39 @@ const Bootloader = {
   },
 }
 
-async function task(opts: { current_project: any }) {
-  const core = await Core({
-    config: { ...opts.current_project.settings, storage: "raf", disable_timeout: true }
-  })
-  log(`Serving backbone://${opts.current_project.settings.address}...`)
+async function task({ current_project = { cwd: null, settings: { address: null, encryption_key: null } }, local = false, address = '' } = {}) {
+  let core
+  if (!local) {
+    core = await Core({
+      config: { ...current_project.settings, storage: "raf", disable_timeout: true },
+    })
+    log(`Serving backbone://${current_project.settings.address}...`)
+  } else {
+    if (!fs.existsSync(`${current_project.cwd}/dist/app.min.js`)) {
+      return log(`No compiled app found, please run 'compile' first.`, false, "red")
+    }
+    const code = fs.readFileSync(`${current_project.cwd}/dist/app.min.js`, "utf-8")
+    let ui = fs.readFileSync(`${current_project.cwd}/dist/ui.min.js`, "utf-8")
+    const app = Function(code + ';return app')()
+
+    const local_address = address ? address.replace('backbone://', '') : `0x${crypto.buf2hex(crypto.discoveryKey(crypto.randomBytes(32)))}`
+    core = await Core({
+      config: { ...current_project.settings, storage: "raf", disable_timeout: true, address: local_address },
+      app,
+    })
+    await core._setMeta({
+      key: "code",
+      value: {
+        app: code,
+        ui,
+        signature: '!!!DEV!!!',
+      },
+    })
+    log(`Serving local code at backbone://${local_address} (https://browser.backbonedao.com/${local_address})...`)
+    if(current_project.settings.encryption_key) log(`Encryption key: ${current_project.settings.encryption_key}`)
+  }
   // @ts-ignore
-  if(!await core.getNetwork()) await core.connect()
+  if (!(await core.getNetwork())) await core.connect()
   // console.log("Getting app code...")
   // const unpacked_code = await BootCore.get("_/code")
   // if (!unpacked_code) throw new Error("no code found")

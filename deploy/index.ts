@@ -35,8 +35,9 @@ async function task(opts: {
   if (!signature) {
     log(`Checksum for signing: ${checksum}`)
     log(
-      `Instructions: Go to your Backbone Id (https://id.backbonedao.com) and either create a new app or update for an app. Input above checksum where asked.`
+      `Instructions: Go to your Backbone Id (https://id.backbonedao.com) and either create a new app or release for an app. Input above checksum where asked.`
     )
+    log(`Once you have created the release signature, run 'bb deploy -s SIGNATURE' to deploy.`)
   } else {
     log(`Verify signature...`)
     // check signature
@@ -82,7 +83,7 @@ async function task(opts: {
 
     log(`All done 🥳`)
     log(
-      `Tip: To propagate new code to app users, run 'backbone serve ${current_project.settings.address}'`
+      `Tip: To propagate new code to app users, run 'bb serve'`
     )
   }
 }
