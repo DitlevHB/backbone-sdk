@@ -1,10 +1,6 @@
 const Config = require('../backbone.json')
-const Core = require('../../core-alpha')
+const { Core, User } = require('../../core-alpha/dist/node')
 const App = require('./app')
+const UI = require('./ui')
 
-;(async () => {
-  window['bb'] = await Core({
-    config: Config.settings,
-    app: App
-  })
-})()
+module.exports = { ...app, UI }

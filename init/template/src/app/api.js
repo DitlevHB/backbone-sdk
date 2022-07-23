@@ -1,7 +1,7 @@
-const API = async function(Data, Protocol) {
+const API = async function (Data, Protocol) {
   return {
     async all(stream) {
-      const items = await Data.query({ lt: '~' }, stream)
+      const items = await Data.query({ lt: "~" }, stream)
       return items
     },
     async get(key) {
@@ -10,15 +10,15 @@ const API = async function(Data, Protocol) {
     },
     async del(key) {
       await Protocol({
-        type: 'del',
+        type: "del",
         key,
       })
     },
-    async set(params = { key: "", value: "" }) {
+    async set({ key, value } = params) {
       await Protocol({
-        type: 'set',
-        key: params.key,
-        value: params.value
+        type: "set",
+        key,
+        value,
       })
     },
   }
