@@ -10,10 +10,10 @@ const Buffer = require("b4a")
 
 async function task(opts: {
   signature?: string
-  current_project: any
+  manifest: any
   update_registry?: boolean
 }) {
-  let { signature, current_project, update_registry } = { ...opts }
+  let { signature, manifest: current_project, update_registry } = { ...opts }
   if (!fs.existsSync(`${current_project.cwd}/dist/app.min.js`)) {
     return log(
       `No compiled app found, please run 'compile' first.`,
@@ -21,6 +21,7 @@ async function task(opts: {
       "red"
     )
   }
+  const manifest = JSON.stringify(require(`${current_project.cwd}/backbone.json`).app)
   const app = fs.readFileSync(
     `${current_project.cwd}/dist/app.min.js`,
     "utf-8"
@@ -30,7 +31,7 @@ async function task(opts: {
     "utf-8"
   )
   if(!ui) ui = ""
-  const checksum = buf2hex(createHash(app + ui))
+  const checksum = buf2hex(createHash(manifest + app + ui))
 
   if (!signature) {
     log(`Checksum for signing: ${checksum}`)
@@ -60,6 +61,13 @@ async function task(opts: {
       app: AppLoader,
     })
     await apploader_core._setMeta({
+      key: "manifest",
+      value: manifest,
+    })
+    const mmanifest = await apploader_core._getMeta("manifest")
+    if (!mmanifest) return log(`Container manifest failed to save.`, false, "red")
+
+    await apploader_core._setMeta({
       key: "code",
       value: {
         app,
@@ -69,9 +77,9 @@ async function task(opts: {
     })
     const ccode = await apploader_core._getMeta("code")
     if (!ccode) return log(`Container code failed to save.`, false, "red")
-    // const unpacked_code = unpack(ccode)
-    if (buf2hex(createHash(ccode.app + ccode.ui)) !== buf2hex(createHash(app + ui)))
-      return log(`Container code mismatch from original code.`, false, "red")
+ 
+    if (buf2hex(createHash(mmanifest + ccode.app + ccode.ui)) !== checksum)
+      return log(`Container manifest and code mismatch from originals.`, false, "red")
     log(
       `Deploying container to backbone://${current_project.settings.address}...`
     )

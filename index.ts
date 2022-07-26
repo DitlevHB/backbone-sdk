@@ -14,30 +14,12 @@ const terminal = term()
 
 function printLogo() {
   terminal.green("\n\n")
-  terminal.green(
-    "██████╗  █████╗  ██████╗██╗  ██╗██████╗  ██████╗ ███╗   ██╗███████╗       ██╗ ██╗" +
-      "\n"
-  )
-  terminal.green(
-    "██╔══██╗██╔══██╗██╔════╝██║ ██╔╝██╔══██╗██╔═══██╗████╗  ██║██╔════╝██╗   ██╔╝██╔╝" +
-      "\n"
-  )
-  terminal.green(
-    "██████╔╝███████║██║     █████╔╝ ██████╔╝██║   ██║██╔██╗ ██║█████╗  ╚═╝  ██╔╝██╔╝ " +
-      "\n"
-  )
-  terminal.green(
-    "██╔══██╗██╔══██║██║     ██╔═██╗ ██╔══██╗██║   ██║██║╚██╗██║██╔══╝  ██╗ ██╔╝██╔╝  " +
-      "\n"
-  )
-  terminal.green(
-    "██████╔╝██║  ██║╚██████╗██║  ██╗██████╔╝╚██████╔╝██║ ╚████║███████╗╚═╝██╔╝██╔╝   " +
-      "\n"
-  )
-  terminal.green(
-    "╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚══════╝   ╚═╝ ╚═╝    " +
-      "\n\n"
-  )
+  terminal.green("██████╗  █████╗  ██████╗██╗  ██╗██████╗  ██████╗ ███╗   ██╗███████╗       ██╗ ██╗" + "\n")
+  terminal.green("██╔══██╗██╔══██╗██╔════╝██║ ██╔╝██╔══██╗██╔═══██╗████╗  ██║██╔════╝██╗   ██╔╝██╔╝" + "\n")
+  terminal.green("██████╔╝███████║██║     █████╔╝ ██████╔╝██║   ██║██╔██╗ ██║█████╗  ╚═╝  ██╔╝██╔╝ " + "\n")
+  terminal.green("██╔══██╗██╔══██║██║     ██╔═██╗ ██╔══██╗██║   ██║██║╚██╗██║██╔══╝  ██╗ ██╔╝██╔╝  " + "\n")
+  terminal.green("██████╔╝██║  ██║╚██████╗██║  ██╗██████╔╝╚██████╔╝██║ ╚████║███████╗╚═╝██╔╝██╔╝   " + "\n")
+  terminal.green("╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚══════╝   ╚═╝ ╚═╝    " + "\n\n")
 }
 // const version = require("./package.json").version
 // program.version(version)
@@ -45,6 +27,25 @@ function printLogo() {
 async function common() {
   printLogo()
   // if (!options?.skipUpdate) await checkUpdate()
+}
+
+async function getProjectDetails(options) {
+  const dir = options?.directory ? `${process.cwd()}/${options.directory}/` : process.cwd()
+  const manifest = getCurrentProject(dir)
+  if (!manifest) {
+    log(
+      `No backbone.json found.\n ^:
+^+How to get backbone.json^ ^:
+Step 1: Create new app with your Backbone Id (https://id.backbonedao.com or your own instance)
+Step 2: Download backbone.json
+Step 3: Place backbone.json in the root of your project
+Step 4: Run this command again\n`,
+      false,
+      "red"
+    )
+    if (!options.force) process.exit(1)
+  }
+  return { dir, manifest }
 }
 
 program.usage("<command> [options]")
@@ -59,9 +60,7 @@ program
   .action(async (options) => {
     await common()
 
-    const dir = options?.directory
-      ? `${process.cwd()}/${options.directory}/`
-      : process.cwd()
+    const dir = options?.directory ? `${process.cwd()}/${options.directory}/` : process.cwd()
     const currentProject = getCurrentProject(dir)
     if (currentProject) {
       log(`Backbone project already set up in ${dir}`, false, "yellow")
@@ -105,18 +104,7 @@ program
   .action(async (options) => {
     await common()
 
-    const dir = options?.directory
-      ? `${process.cwd()}/${options.directory}/`
-      : process.cwd()
-    const currentProject = getCurrentProject(dir)
-    if (!currentProject) {
-      log(
-        `Please run this command on the root of the Backbone app project dir`,
-        false,
-        "red"
-      )
-      if (!options.force) process.exit(1)
-    }
+    const { dir } = await getProjectDetails(options)
 
     await compileProject({ dir, ...options })
     process.exit(0)
@@ -130,17 +118,9 @@ program
   .action(async (options) => {
     await common()
 
-    const current_project = getCurrentProject(process.cwd())
-    if (!current_project) {
-      log(
-        `Please run this command on the root of the Backbone app project dir`,
-        false,
-        "red"
-      )
-      if (!options.force) process.exit(1)
-    }
+    const { manifest } = await getProjectDetails(options)
 
-    await deployProject({ current_project, ...options })
+    await deployProject({ manifest, ...options })
     process.exit(0)
   })
 
@@ -153,17 +133,9 @@ program
   .action(async (options) => {
     await common()
 
-    const current_project = getCurrentProject(process.cwd())
-    if (!current_project) {
-      log(
-        `Please run this command on the root of the Backbone app project dir`,
-        false,
-        "red"
-      )
-      if (!options.force) process.exit(1)
-    }
+    const { manifest } = await getProjectDetails(options)
 
-    await serveProject({ current_project, ...options })
+    await serveProject({ manifest, ...options })
     // process.exit(0)
   })
 
