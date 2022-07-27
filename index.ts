@@ -56,6 +56,7 @@ program
   .option("--skipUpdate", "Skip checking for update of Backbone SDK")
   .option("-d, --directory <projectdir>", "Directory for the new project")
   .option("--force", "Ignores all safety checks, be careful")
+  .option("--pnpm", "Use PNPM instead of NPM")
   .description("Create a new Backbone project")
   .action(async (options) => {
     await common()
@@ -81,6 +82,7 @@ program
       log(`\n`)
     }
 
+    /* 
     if (!options.name) {
       log("> Enter project name (backbone-app): ", true)
       options.name = await terminal.inputField().promise
@@ -92,6 +94,7 @@ program
       options.description = await terminal.inputField().promise
       log()
     }
+    */
 
     await initProject({ dir, ...options })
     process.exit(0)
