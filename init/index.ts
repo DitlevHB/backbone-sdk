@@ -3,12 +3,12 @@ import fs from "../utils/fs-extra"
 const { exec } = require("child_process")
 import { randomBytes, createHash, buf2hex } from "@backbonedao/crypto"
 
-async function task(opts: {
-  dir: string
-  name?: string
-  description?: string
-}) {
-  const { dir, name, description } = { ...opts }
+async function task({
+  dir = "",
+  name = "",
+  description = "",
+  pnpm = false
+} = {}) {
 
   // copy directory template over
   log(`Copying files to ${dir}...`)
@@ -20,15 +20,17 @@ async function task(opts: {
   pkg.description = description || "Backbone App"
   await fs.writeFileAsync(dir + "/package.json", JSON.stringify(pkg, null, 2))
 
+  /* 
   const bb = require(dir + "/backbone.json")
   bb.app.name = name || "backbone-app"
   bb.app.description = description || "Backbone App"
   // bb.settings.encryption_key = createHash(randomBytes(32)).slice(0, 32)
-  await fs.writeFileAsync(dir + "/backbone.json", JSON.stringify(bb, null, 2))
+  await fs.writeFileAsync(dir + "/backbone.json", JSON.stringify(bb, null, 2)) 
+  */
 
   // install dependencies
   log(`Installing NPM dependencies... (this can take a few minutes)`)
-  const cmd = `cd ${dir} && npm install`
+  const cmd = `cd ${dir} && ${pnpm ? 'pnpm' : 'npm'} install`
   return new Promise((resolve, reject) => {
     const npm = exec(cmd)
     let errors = false
