@@ -26,10 +26,13 @@
     ]
   },
   "exclude": [
-    "**/node_modules",
+    // "**/node_modules",
     "example",
     "test",
-    "dist"
+    "dist",
+    "lib/core/tmp",
+    "lib/core/dist",
+    "lib/core/test",
   ],
   "ts-node": {
     "files": true

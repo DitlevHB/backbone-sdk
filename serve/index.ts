@@ -1,5 +1,6 @@
+// @ts-nocheck
 import { log } from "../helper"
-import { Core } from "../../core-alpha/dist/node"
+import { Core } from "../lib/core"
 import fs from "fs"
 import crypto from "@backbonedao/crypto"
 
@@ -21,6 +22,7 @@ async function task({
   local = false,
   address = "",
 } = {}) {
+
   params = { manifest, local, address }
   let core
   if (!local) {

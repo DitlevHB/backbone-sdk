@@ -1,12 +1,12 @@
 import { log } from "../helper"
-const { exec } = require("child_process")
+// const { exec } = require("child_process")
 const fs = require("fs")
-const { buf2hex, createHash } = require("@backbonedao/crypto")
+const { buf2hex, createHash, verifyAppSig } = require("@backbonedao/crypto")
 const AppLoader = require("./apploader")
-const { Core } = require("../../core-alpha/dist/node")
-const { pack, unpack } = require("msgpackr")
-const { verifySig } = require("../../bootloader")
-const Buffer = require("b4a")
+const { Core } = require("../lib/core")
+// const { pack, unpack } = require("msgpackr")
+// const { verifySig } = require("../../bootloader")
+// const Buffer = require("b4a")
 
 async function task(opts: {
   signature?: string
@@ -44,7 +44,7 @@ async function task(opts: {
     // check signature
     if (signature.length === 130) signature = "0x" + signature
     if (signature.length !== 132) return log(`Invalid signature.`, false, "red")
-    const is_valid_address = await verifySig({
+    const is_valid_address = await verifyAppSig({
       code: { checksum, signature },
       address: current_project.settings.address,
     })

@@ -1,7 +1,7 @@
 import { log } from "../helper"
 import fs from "../utils/fs-extra"
 const { exec } = require("child_process")
-import { randomBytes, createHash, buf2hex } from "@backbonedao/crypto"
+// import { randomBytes, createHash, buf2hex } from "@backbonedao/crypto"
 
 async function task({
   dir = "",
@@ -41,14 +41,18 @@ async function task({
       }
     })
     npm.stdout.on("data", (data) => {
-      log(`${data}`)
+      // log(`${data}`)
     })
 
     npm.on("close", (code) => {
       resolve(true)
       if (!errors) {
-        log("Project initialized!")
-        log("\nGo to your Id (https://id.backbonedao.com) to bind app to your id and to get app address.")
+        log("Project initialized 🥳 ^:")
+        log(`\n^+Next steps
+1. Go to your Id (https://id.backbonedao.com or your own Id instance)
+2. Create Id if you don't have one
+3. Create new app
+4. Download backbone.json and place it in this directory`)
         log(
           "\nFor documentation, go to docs (https://devs.backbonedao.com) or have a chat at Discord (https://dsc.gg/backbonedao). Have fun!"
         )

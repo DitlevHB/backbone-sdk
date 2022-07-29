@@ -1,0 +1,21 @@
+{
+  "name": "backbone-app",
+  "version": "1.0.0",
+  "description": "Backbone App",
+  "main": "src/index.js",
+  "scripts": {
+    "build:browser:watch": "budo src/index.js --live --dir tests/www --port 1337",
+    "build:browser:full": "npm run build:browser:app && npm run build:browser:ui",
+    "build:browser:app": "mkdir -p dist && browserify src/app/index.js --standalone app > dist/app.js && uglifyjs dist/app.js --compress --mangle > dist/app.min.js",
+    "build:browser:ui": "mkdir -p dist && browserify src/ui/index.js --standalone app > dist/ui.js && uglifyjs dist/ui.js --compress --mangle > dist/ui.min.js"
+  },
+  "keywords": [],
+  "license": "AGPL-3.0-or-later",
+  "dependencies": {},
+  "devDependencies": {
+    "@playwright/test": "^1.21.1",
+    "browserify": "^17.0.0",
+    "budo": "^11.7.0",
+    "uglify-js": "^3.15.4"
+  }
+}
