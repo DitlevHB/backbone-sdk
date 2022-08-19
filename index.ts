@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+require('ts-node').register({ lazy: true })
 import { program } from "commander"
 import { log, term } from "./helper"
 import { checkUpdate } from "./utils/check-update"
@@ -138,7 +138,7 @@ program
 
     const { manifest } = await getProjectDetails(options)
 
-    await serveProject({ manifest, ...options })
+    await serveProject({ manifest, terminal, ...options })
     // process.exit(0)
   })
 

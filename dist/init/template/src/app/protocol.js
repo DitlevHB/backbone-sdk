@@ -1,5 +1,4 @@
 const Protocol = async function(op, Data) {
-  if (typeof op !== 'object' || !op?.type) throw new Error('UNKNOWN OP')
   switch (op.type) {
     case 'set': {
       await Data.put({ key: op.key, value: op.value })

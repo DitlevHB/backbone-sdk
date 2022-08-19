@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+require('ts-node').register({ lazy: true });
 const commander_1 = require("commander");
 const helper_1 = require("./helper");
 const get_current_project_1 = __importDefault(require("./utils/get-current-project"));
@@ -96,7 +97,7 @@ commander_1.program
     .action(async (options) => {
     await common();
     const { manifest } = await getProjectDetails(options);
-    await (0, serve_1.default)({ manifest, ...options });
+    await (0, serve_1.default)({ manifest, terminal, ...options });
 });
 commander_1.program.on("command:*", (cmd) => {
     printLogo();

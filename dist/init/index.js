@@ -20,7 +20,7 @@ async function task({ dir = "", name = "", description = "", pnpm = false } = {}
         let errors = false;
         npm.stderr.on("data", (data) => {
             if (data.match(/npm ERR/)) {
-                (0, helper_1.log)(`${data}`, null, "red");
+                (0, helper_1.log)(`${data}`, false, "red");
                 errors = true;
             }
         });

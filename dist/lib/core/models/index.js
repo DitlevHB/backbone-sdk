@@ -26,19 +26,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Operation = exports.OwnerOnly = exports.AppendOnly = exports.User = exports.Commons = void 0;
+exports.DataModel = exports.Binary = exports.Operation = exports.OwnerOnly = exports.AppendOnly = exports.Commons = void 0;
 const Commons = __importStar(require("./common"));
 exports.Commons = Commons;
 const base_1 = __importDefault(require("./base"));
-const user_1 = __importDefault(require("./user"));
-exports.User = user_1.default;
 const append_only_1 = __importDefault(require("./append_only"));
 exports.AppendOnly = append_only_1.default;
 const owner_only_1 = __importDefault(require("./owner_only"));
 exports.OwnerOnly = owner_only_1.default;
 const operation_1 = __importDefault(require("./operation"));
 exports.Operation = operation_1.default;
-function create(core) {
-    return (0, base_1.default)(core || null);
+const binary_1 = __importDefault(require("./binary"));
+exports.Binary = binary_1.default;
+const common_1 = require("../common");
+function create(model, opts, migrations) {
+    return async (data) => {
+        const m = await (0, base_1.default)(model, opts, migrations);
+        if (typeof m === 'function')
+            return m(data);
+        else
+            return (0, common_1.error)('error in creating data model');
+    };
 }
+exports.DataModel = create;
 exports.default = create;

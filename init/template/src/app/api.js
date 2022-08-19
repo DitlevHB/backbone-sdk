@@ -14,7 +14,7 @@ const API = async function (Data, Protocol) {
         key,
       })
     },
-    async set({ key, value } = params) {
+    async set({ key, value } = {}) {
       await Protocol({
         type: "set",
         key,

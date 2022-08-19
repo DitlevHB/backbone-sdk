@@ -13,7 +13,7 @@ async function task(opts: {
     const npm = exec(cmd)
     let errors = false
     npm.stderr.on("data", (data) => {
-      log(`${data}`, null, 'red')
+      log(`${data}`, false, 'red')
       if(data.match(/npm ERR/)) errors = true
     })
     npm.stdout.on("data", (data) => {

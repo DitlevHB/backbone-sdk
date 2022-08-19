@@ -36,7 +36,7 @@ async function task({
     let errors = false
     npm.stderr.on("data", (data) => {
       if (data.match(/npm ERR/)) {
-        log(`${data}`, null, "red")
+        log(`${data}`, false, "red")
         errors = true
       }
     })

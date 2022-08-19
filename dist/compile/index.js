@@ -10,7 +10,7 @@ async function task(opts) {
         const npm = exec(cmd);
         let errors = false;
         npm.stderr.on("data", (data) => {
-            (0, helper_1.log)(`${data}`, null, 'red');
+            (0, helper_1.log)(`${data}`, false, 'red');
             if (data.match(/npm ERR/))
                 errors = true;
         });

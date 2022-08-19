@@ -21,7 +21,9 @@ async function task(opts: {
       "red"
     )
   }
-  const manifest = JSON.stringify(require(`${current_project.cwd}/backbone.json`).app)
+  const backbonejson = require(`${current_project.cwd}/backbone.json`)
+  // TODO: manifest needs to be signed
+  const manifest = JSON.stringify(backbonejson.app)
   const app = fs.readFileSync(
     `${current_project.cwd}/dist/app.min.js`,
     "utf-8"
@@ -34,6 +36,7 @@ async function task(opts: {
   const checksum = buf2hex(createHash(manifest + app + ui))
 
   if (!signature) {
+    log(`Version: ${backbonejson.app.version} (found in backbone.json)`)
     log(`Checksum for signing: ${checksum}`)
     log(
       `Instructions: Go to your Backbone Id (https://id.backbonedao.com) and either create a new app or release for an app. Input above checksum where asked.`
@@ -46,7 +49,7 @@ async function task(opts: {
     if (signature.length !== 132) return log(`Invalid signature.`, false, "red")
     const is_valid_address = await verifyAppSig({
       code: { checksum, signature },
-      address: current_project.settings.address,
+      address: current_project.app.address,
     })
     if (!is_valid_address) {
       return log(`Signature verification failed.`, false, "red")
@@ -55,19 +58,19 @@ async function task(opts: {
     // Open Core with AppLoader app
     const apploader_core = await Core({
       config: {
-        address: current_project.settings.address,
+        address: current_project.app.address,
         encryption_key: current_project.settings.encryption_key,
       },
       app: AppLoader,
     })
-    await apploader_core._setMeta({
+    await apploader_core.meta._setMeta({
       key: "manifest",
       value: manifest,
     })
-    const mmanifest = await apploader_core._getMeta("manifest")
+    const mmanifest = await apploader_core.meta._getMeta("manifest")
     if (!mmanifest) return log(`Container manifest failed to save.`, false, "red")
 
-    await apploader_core._setMeta({
+    await apploader_core.meta._setMeta({
       key: "code",
       value: {
         app,
@@ -75,13 +78,13 @@ async function task(opts: {
         signature,
       },
     })
-    const ccode = await apploader_core._getMeta("code")
+    const ccode = await apploader_core.meta._getMeta("code")
     if (!ccode) return log(`Container code failed to save.`, false, "red")
  
     if (buf2hex(createHash(mmanifest + ccode.app + ccode.ui)) !== checksum)
       return log(`Container manifest and code mismatch from originals.`, false, "red")
     log(
-      `Deploying container to backbone://${current_project.settings.address}...`
+      `Deploying container to backbone://${current_project.app.address}...`
     )
 
     if (update_registry) {
