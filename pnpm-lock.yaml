@@ -9,6 +9,7 @@ specifiers:
   '@jest/globals': ^27.5.1
   '@milahu/patch-package': ^6.4.14
   '@noble/secp256k1': ^1.6.3
+  '@types/node': ^18.7.8
   async: ^3.2.4
   axios: ^0.26.1
   b4a: ^1.6.0
@@ -35,6 +36,7 @@ specifiers:
   semver: ^7.3.7
   sha256: ^0.2.0
   sodium-javascript: ^0.8.0
+  streamx: ^2.12.5
   terminal-kit: ^2.5.1
   ts-jest: ^27.1.5
   ts-node: ^10.9.1
@@ -44,6 +46,7 @@ specifiers:
   utf-8-validate: ^5.0.9
   util: ^0.12.4
   uuid: ^8.3.2
+  varint: ^6.0.0
   ws: ^8.8.1
 
 dependencies:
@@ -55,7 +58,7 @@ dependencies:
   msgpackr: 1.6.2
   semver: 7.3.7
   terminal-kit: 2.5.1
-  ts-node: 10.9.1_typescript@4.7.4
+  ts-node: 10.9.1_itmtyrrie7wpjnrpwbb5uqyzwa
 
 devDependencies:
   '@backbonedao/data-db': github.com/backbonedao/data-db/f9183393adde39e84d166d8ac900844b295dc689
@@ -65,6 +68,7 @@ devDependencies:
   '@jest/globals': 27.5.1
   '@milahu/patch-package': 6.4.14
   '@noble/secp256k1': 1.6.3
+  '@types/node': 18.7.8
   async: 3.2.4
   bufferutil: 4.0.6
   comlink: 4.3.1
@@ -85,6 +89,7 @@ devDependencies:
   rimraf: 3.0.2
   sha256: 0.2.0
   sodium-javascript: 0.8.0
+  streamx: 2.12.5
   ts-jest: 27.1.5_g4n3hsjlbmz4ag5o32ytojordu
   ttl: 1.3.1
   typescript: 4.7.4
@@ -92,6 +97,7 @@ devDependencies:
   utf-8-validate: 5.0.9
   util: 0.12.4
   uuid: 8.3.2
+  varint: 6.0.0
   ws: 8.8.1_22kvxa7zeyivx4jp72v2w3pkvy
 
 packages:
@@ -811,7 +817,7 @@ packages:
       noise-handshake: 2.2.0
       sodium-secretstream: 1.0.2
       sodium-universal: 3.1.0
-      streamx: 2.12.4
+      streamx: 2.12.5
       timeout-refresh: 2.0.1
     dev: true
 
@@ -836,7 +842,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.8
       chalk: 4.1.2
       jest-message-util: 27.5.1
       jest-util: 27.5.1
@@ -857,7 +863,7 @@ packages:
       '@jest/test-result': 27.5.1
       '@jest/transform': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.8
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       emittery: 0.8.1
@@ -894,7 +900,7 @@ packages:
     dependencies:
       '@jest/fake-timers': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.8
       jest-mock: 27.5.1
     dev: true
 
@@ -904,7 +910,7 @@ packages:
     dependencies:
       '@jest/types': 27.5.1
       '@sinonjs/fake-timers': 8.1.0
-      '@types/node': 18.6.4
+      '@types/node': 18.7.8
       jest-message-util: 27.5.1
       jest-mock: 27.5.1
       jest-util: 27.5.1
@@ -933,7 +939,7 @@ packages:
       '@jest/test-result': 27.5.1
       '@jest/transform': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.8
       chalk: 4.1.2
       collect-v8-coverage: 1.0.1
       exit: 0.1.2
@@ -1017,7 +1023,7 @@ packages:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.4
       '@types/istanbul-reports': 3.0.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.8
       '@types/yargs': 16.0.4
       chalk: 4.1.2
     dev: true
@@ -1329,7 +1335,7 @@ packages:
   /@types/graceful-fs/4.1.5:
     resolution: {integrity: sha512-anKkLmZZ+xm4p8JWBf4hElkM4XR+EZeA2M9BAkkTldmcyDY4mbdIJnRghDJH3Ov5ooY7/UAoENtmdMSkaAd7Cw==}
     dependencies:
-      '@types/node': 18.6.4
+      '@types/node': 18.7.8
     dev: true
 
   /@types/istanbul-lib-coverage/2.0.4:
@@ -1351,16 +1357,15 @@ packages:
   /@types/keyv/3.1.4:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
-      '@types/node': 18.6.4
+      '@types/node': 18.7.8
     dev: true
 
   /@types/node/14.18.23:
     resolution: {integrity: sha512-MhbCWN18R4GhO8ewQWAFK4TGQdBpXWByukz7cWyJmXhvRuCIaM/oWytGPqVmDzgEnnaIc9ss6HbU5mUi+vyZPA==}
     dev: true
 
-  /@types/node/18.6.4:
-    resolution: {integrity: sha512-I4BD3L+6AWiUobfxZ49DlU43gtI+FTHSv9pE2Zekg6KjMpre4ByusaljW3vYSLJrvQ1ck1hUaeVu8HVlY3vzHg==}
-    dev: true
+  /@types/node/18.7.8:
+    resolution: {integrity: sha512-/YP55EMK2341JkODUb8DM9O0x1SIz2aBvyF33Uf1c76St3VpsMXEIW0nxuKkq/5cxnbz0RD9cfwNZHEAZQD3ag==}
 
   /@types/prettier/2.7.0:
     resolution: {integrity: sha512-RI1L7N4JnW5gQw2spvL7Sllfuf1SaHdrZpCHiBlCXjIlufi1SMNnbu2teze3/QE67Fg2tBlH7W+mi4hVNk4p0A==}
@@ -1369,7 +1374,7 @@ packages:
   /@types/responselike/1.0.0:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
     dependencies:
-      '@types/node': 18.6.4
+      '@types/node': 18.7.8
     dev: true
 
   /@types/stack-utils/2.0.1:
@@ -2372,7 +2377,7 @@ packages:
       kademlia-routing-table: 1.0.1
       nat-sampler: 1.0.1
       sodium-universal: 3.1.0
-      streamx: 2.12.4
+      streamx: 2.12.5
       time-ordered-set: 1.0.2
     dev: true
 
@@ -3711,7 +3716,7 @@ packages:
       '@jest/environment': 27.5.1
       '@jest/test-result': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.8
       chalk: 4.1.2
       co: 4.6.0
       dedent: 0.7.0
@@ -3794,7 +3799,7 @@ packages:
       pretty-format: 27.5.1
       slash: 3.0.0
       strip-json-comments: 3.1.1
-      ts-node: 10.9.1_typescript@4.7.4
+      ts-node: 10.9.1_itmtyrrie7wpjnrpwbb5uqyzwa
     transitivePeerDependencies:
       - bufferutil
       - canvas
@@ -3837,7 +3842,7 @@ packages:
       '@jest/environment': 27.5.1
       '@jest/fake-timers': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.8
       jest-mock: 27.5.1
       jest-util: 27.5.1
       jsdom: 16.7.0_22kvxa7zeyivx4jp72v2w3pkvy
@@ -3855,7 +3860,7 @@ packages:
       '@jest/environment': 27.5.1
       '@jest/fake-timers': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.8
       jest-mock: 27.5.1
       jest-util: 27.5.1
     dev: true
@@ -3871,7 +3876,7 @@ packages:
     dependencies:
       '@jest/types': 27.5.1
       '@types/graceful-fs': 4.1.5
-      '@types/node': 18.6.4
+      '@types/node': 18.7.8
       anymatch: 3.1.2
       fb-watchman: 2.0.1
       graceful-fs: 4.2.10
@@ -3893,7 +3898,7 @@ packages:
       '@jest/source-map': 27.5.1
       '@jest/test-result': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.8
       chalk: 4.1.2
       co: 4.6.0
       expect: 27.5.1
@@ -3948,7 +3953,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.8
     dev: true
 
   /jest-pnp-resolver/1.2.2_jest-resolve@27.5.1:
@@ -4004,7 +4009,7 @@ packages:
       '@jest/test-result': 27.5.1
       '@jest/transform': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.8
       chalk: 4.1.2
       emittery: 0.8.1
       graceful-fs: 4.2.10
@@ -4061,7 +4066,7 @@ packages:
     resolution: {integrity: sha512-jZCyo6iIxO1aqUxpuBlwTDMkzOAJS4a3eYz3YzgxxVQFwLeSA7Jfq5cbqCY+JLvTDrWirgusI/0KwxKMgrdf7w==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
-      '@types/node': 18.6.4
+      '@types/node': 18.7.8
       graceful-fs: 4.2.10
     dev: true
 
@@ -4100,7 +4105,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.8
       chalk: 4.1.2
       ci-info: 3.3.2
       graceful-fs: 4.2.10
@@ -4125,7 +4130,7 @@ packages:
     dependencies:
       '@jest/test-result': 27.5.1
       '@jest/types': 27.5.1
-      '@types/node': 18.6.4
+      '@types/node': 18.7.8
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       jest-util: 27.5.1
@@ -4136,7 +4141,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 18.6.4
+      '@types/node': 18.7.8
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: true
@@ -5984,8 +5989,8 @@ packages:
       - supports-color
     dev: true
 
-  /streamx/2.12.4:
-    resolution: {integrity: sha512-K3xdIp8YSkvbdI0PrCcP0JkniN8cPCyeKlcZgRFSl1o1xKINCYM93FryvTSOY57x73pz5/AjO5B8b9BYf21wWw==}
+  /streamx/2.12.5:
+    resolution: {integrity: sha512-Y+nkFw57Z5JHT3zLlqFm3GccOy2FeYdUrrqita6Dd8kr/8enPn9GKa8IYf3/DmEKfZl/E2sWoSKUnd4qhonrgg==}
     dependencies:
       fast-fifo: 1.1.0
       queue-tick: 1.0.0
@@ -6423,7 +6428,7 @@ packages:
       yargs-parser: 20.2.9
     dev: true
 
-  /ts-node/10.9.1_typescript@4.7.4:
+  /ts-node/10.9.1_itmtyrrie7wpjnrpwbb5uqyzwa:
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -6442,6 +6447,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.3
+      '@types/node': 18.7.8
       acorn: 8.8.0
       acorn-walk: 8.2.0
       arg: 4.1.3
@@ -6641,6 +6647,10 @@ packages:
 
   /varint/5.0.2:
     resolution: {integrity: sha512-lKxKYG6H03yCZUpAGOPOsMcGxd1RHCu1iKvEHYDPmTyq2HueGhD73ssNBqqQWfvYs04G9iUFRvmAVLW20Jw6ow==}
+    dev: true
+
+  /varint/6.0.0:
+    resolution: {integrity: sha512-cXEIW6cfr15lFv563k4GuVuW/fiwjknytD37jIOLSdSWuOI6WnO/oKwmP2FQTU2l01LP8/M5TSAJpzUaGe3uWg==}
     dev: true
 
   /w3c-hr-time/1.0.2:
@@ -6987,7 +6997,7 @@ packages:
       mutexify: 1.4.0
       patch-package: 6.4.7
       protocol-buffers-encodings: github.com/backbonedao/protocol-buffers-encodings/0a0f455ba9247c950f241ceb5d3b730601672f56
-      streamx: 2.12.4
+      streamx: 2.12.5
     dev: true
 
   github.com/backbonedao/data-manager/f8328b738089bcf9e9f1565a83fcb5189665e501_22kvxa7zeyivx4jp72v2w3pkvy:
@@ -7022,7 +7032,7 @@ packages:
       mutexify: 1.4.0
       patch-package: 6.4.7
       safety-catch: 1.0.2
-      streamx: 2.12.4
+      streamx: 2.12.5
       tape-run: 9.0.0
     transitivePeerDependencies:
       - supports-color
@@ -7054,7 +7064,7 @@ packages:
       safety-catch: 1.0.2
       sodium-javascript: 0.8.0
       stream: /stream-browserify/3.0.0
-      streamx: 2.12.4
+      streamx: 2.12.5
       xache: 1.1.0
     optionalDependencies:
       fsctl: 1.0.0
@@ -7176,7 +7186,7 @@ packages:
       noise-handshake: 2.2.0
       sodium-javascript: 0.8.0
       sodium-secretstream: 1.0.2
-      streamx: 2.12.4
+      streamx: 2.12.5
       timeout-refresh: 2.0.1
     transitivePeerDependencies:
       - bufferutil
