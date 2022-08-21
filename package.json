@@ -4,8 +4,7 @@
   "description": "core/sdk",
   "scripts": {
     "test": "tape test/test.js",
-    "build": "rimraf ./dist && tsc && cp -R init/template/ dist/init/",
-    "postinstall": "npm link"
+    "build": "rimraf ./dist && tsc && cp -R init/template/ dist/init/"
   },
   "bin": {
     "backbone": "dist/index.js",
