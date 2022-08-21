@@ -1,7 +1,7 @@
 const { test, expect } = require("@playwright/test")
 const Config = require("../backbone.json")
 const App = require("../src/app")
-const Core = require("../../core-alpha")
+const Core = require("../../core")
 
 let app
 test.beforeAll(async () => {

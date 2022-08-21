@@ -1,4 +1,4 @@
-import { DataModel } from '../../core-alpha/core/models'
+import { DataModel } from '../../core/core/models'
 
 // Example of model with migration
 // For more info, read 
