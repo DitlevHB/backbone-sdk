@@ -1,12 +1,8 @@
 import { log } from "../helper"
-// const { exec } = require("child_process")
 const fs = require("fs")
 const { buf2hex, createHash, verifyAppSig } = require("@backbonedao/crypto")
 const AppLoader = require("./apploader")
 const { Core } = require("../lib/core")
-// const { pack, unpack } = require("msgpackr")
-// const { verifySig } = require("../../bootloader")
-// const Buffer = require("b4a")
 
 async function task(opts: {
   signature?: string

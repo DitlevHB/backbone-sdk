@@ -1,6 +1,5 @@
 import fs from "fs"
 import path from "path"
-import { cp } from 'fs/promises';
 
 const fse = {
   unlinkSync(p) {
@@ -66,7 +65,10 @@ const fse = {
     })
   },
   copyDirAsync(src, dest) {
-    return cp(src, dest, { force: true, recursive: true })
+    return new Promise((resolve, reject) => {
+      fs.cpSync(src, dest, { force: true, recursive: true })
+      resolve(true)
+    });
   },
 }
 
