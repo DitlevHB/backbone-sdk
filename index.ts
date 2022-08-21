@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-require('ts-node').register({ lazy: true })
+require("ts-node").register({ lazy: true })
 import { program } from "commander"
 import { log, term } from "./helper"
 import { checkUpdate } from "./utils/check-update"
@@ -7,6 +7,7 @@ import getCurrentProject from "./utils/get-current-project"
 import getExistingFiles from "./utils/existing-files"
 import initProject from "./init"
 import compileProject from "./compile"
+import releaseProject from "./release"
 import deployProject from "./deploy"
 import serveProject from "./serve"
 
@@ -113,6 +114,17 @@ program
     process.exit(0)
   })
 
+// RELEASE
+program
+  .command("release")
+  .description("Create new release")
+  .action(async (options) => {
+    await common()
+    const { manifest } = await getProjectDetails(options)
+    await releaseProject({ manifest, ...options })
+    process.exit(0)
+  })
+
 // DEPLOY
 program
   .command("deploy")
@@ -123,6 +135,11 @@ program
 
     const { manifest } = await getProjectDetails(options)
 
+    if (!options.signature) {
+      log("> Enter signature: ", true)
+      options.signature = await terminal.inputField().promise
+      log()
+    }
     await deployProject({ manifest, ...options })
     process.exit(0)
   })
