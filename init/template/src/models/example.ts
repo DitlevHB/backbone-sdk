@@ -1,4 +1,4 @@
-import { DataModel } from '../../core/core/models'
+import { DataModel } from '../../core/dist/models'
 
 // Example of model with migration
 // For more info, read 
@@ -12,7 +12,7 @@ export default DataModel({
     // upgrades your data from the previous model to the 1.0.1 model
     up: (data) => {
       // fill display name with first name and last name by default
-      data.display_name = `${previous.first_name} ${previous.last_name}`
+      data.display_name = `${data.first_name} ${data.last_name}`
       
       // return upgraded object
       return data

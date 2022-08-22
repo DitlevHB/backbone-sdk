@@ -1,4 +1,4 @@
-const API = async function (Data, Protocol) {
+export default async function (Data, Protocol) {
   return {
     async all(stream) {
       const items = await Data.query({ lt: "~" }, stream)
@@ -14,7 +14,8 @@ const API = async function (Data, Protocol) {
         key,
       })
     },
-    async set({ key, value } = {}) {
+    async set(params: { key: string; value: string }) {
+      const { key, value } = params
       await Protocol({
         type: "set",
         key,
@@ -23,5 +24,3 @@ const API = async function (Data, Protocol) {
     },
   }
 }
-
-module.exports = API

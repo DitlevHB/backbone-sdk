@@ -3,7 +3,7 @@
  * i.e. const UI = require("./my-react-app.js")
  */
 
-module.exports = async () => {
+export default async () => {
   /**
    * Backbone Bootloader creates #UI div, so you can do something like
    * ReactDOM.createRoot(document.getElementById('UI')).render(UI)

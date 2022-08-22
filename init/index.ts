@@ -54,7 +54,7 @@ async function task({
 3. Create new app
 4. Download backbone.json and place it in this directory`)
         log(
-          "\nFor documentation, go to docs (https://devs.backbonedao.com) or have a chat at Discord (https://dsc.gg/backbonedao). Have fun!"
+          "\nFor documentation, go to docs (https://docs.backbonedao.com) or have a chat at Discord (https://dsc.gg/backbonedao). Have fun!"
         )
       }
       process.exit(0)

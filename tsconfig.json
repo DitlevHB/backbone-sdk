@@ -33,6 +33,7 @@
     "lib/core/tmp",
     "lib/core/dist",
     "lib/core/test",
+    "init/template/**"
   ],
   "ts-node": {
     "files": true
