@@ -12,20 +12,20 @@ async function task({
 
   // copy directory template over
   log(`Copying files to ${dir}...`)
-  await fs.copyDirAsync(__dirname + "/template/", dir)
+  await fs.copy(__dirname + "/template/", dir, { recursive: true })
 
   // edit project detail files
   const pkg = require(dir + "/package.json")
   pkg.name = name || "backbone-app"
   pkg.description = description || "Backbone App"
-  await fs.writeFileAsync(dir + "/package.json", JSON.stringify(pkg, null, 2))
+  await fs.writeFile(dir + "/package.json", JSON.stringify(pkg, null, 2))
 
   /* 
   const bb = require(dir + "/backbone.json")
   bb.app.name = name || "backbone-app"
   bb.app.description = description || "Backbone App"
   // bb.settings.encryption_key = createHash(randomBytes(32)).slice(0, 32)
-  await fs.writeFileAsync(dir + "/backbone.json", JSON.stringify(bb, null, 2)) 
+  await fs.writeFile(dir + "/backbone.json", JSON.stringify(bb, null, 2)) 
   */
 
   // install dependencies

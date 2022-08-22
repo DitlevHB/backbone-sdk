@@ -1,7 +1,8 @@
-import fs from "fs"
-import path from "path"
-
-const fse = {
+// import fs from "fs"
+// import path from "path"
+import fs from 'fs-extra'
+export default fs
+/* const fse = {
   unlinkSync(p) {
     return fs.unlinkSync(p)
   },
@@ -36,7 +37,7 @@ const fse = {
     }
     return fs.writeFileSync(file, content)
   },
-  writeFileAsync(file, content) {
+  writeFile(file, content) {
     if (!fs.existsSync(path.dirname(file))) {
       fse.mkdirSync(path.dirname(file))
     }
@@ -72,4 +73,4 @@ const fse = {
   },
 }
 
-export default fse
+export default fse */

@@ -8,7 +8,7 @@ async function task(opts: {
 
   // install dependencies
   log(`Compiling and minifying...`)
-  const cmd = `cd ${dir} && npm run build:browser:full`
+  const cmd = `cd ${dir} && npm run build:full`
   return new Promise((resolve, reject) => {
     const npm = exec(cmd)
     let errors = false
@@ -24,7 +24,7 @@ async function task(opts: {
       resolve(true)
       if(!errors) {
         log('App compiled to dist/app.min.js and UI compiled to dist/ui.min.js')
-        log(`Protip: Run 'bb deploy' to get code checksum for release signing.`)
+        log(`Protip: Run 'bb release' to get code checksum for release signing.`)
       }
       process.exit(0)
     })

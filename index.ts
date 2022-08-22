@@ -76,7 +76,7 @@ program
         "yellow"
       )
       const cont = await terminal.inputField().promise
-      if (cont === "N" || !cont) {
+      if (cont.toLowerCase() === "n" || !cont) {
         log(`\n`)
         process.exit(1)
       }
