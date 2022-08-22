@@ -12,7 +12,7 @@ git clone https://github.com/backbonedao/sdk.git
 
 # create a symlink from `lib/core` to `../core`
 mklink /J lib\core ..\core # Windows (use command prompt in admin mode)
-ln -s ../core lib/core # Linux & macOS
+ln -s ../../core lib/core # Linux & macOS
 
 # install dependencies
 npx pnpm i
