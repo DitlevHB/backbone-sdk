@@ -1,6 +1,6 @@
 {
   "name": "@backbonedao/sdk",
-  "version": "0.1.2",
+  "version": "0.9.0",
   "description": "core/sdk",
   "scripts": {
     "test": "tape test/test.js",
@@ -43,6 +43,7 @@
     "cpr": "^3.0.1",
     "exec-sh": "^0.4.0",
     "fs-extra": "^10.1.0",
+    "mkdirp": "^1.0.4",
     "msgpackr": "^1.6.2",
     "semver": "^7.3.7",
     "terminal-kit": "^2.5.1",

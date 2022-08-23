@@ -27,6 +27,7 @@ specifiers:
   jest: ^27.5.1
   lexicographic-integer: ^1.1.0
   lodash: ^4.17.21
+  mkdirp: ^1.0.4
   msgpackr: ^1.6.2
   node: ^16.16.0
   objectmodel: ^4.3.0
@@ -59,6 +60,7 @@ dependencies:
   cpr: 3.0.1
   exec-sh: 0.4.0
   fs-extra: 10.1.0
+  mkdirp: 1.0.4
   msgpackr: 1.6.2
   semver: 7.3.7
   terminal-kit: 2.5.1
@@ -4555,7 +4557,6 @@ packages:
     resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
     engines: {node: '>=10'}
     hasBin: true
-    dev: true
 
   /monotonic-timestamp/0.0.8:
     resolution: {integrity: sha512-3fQw+dAni/JJ4rkvMY7EZOz+tM+yuhrY3tKLJk74YOp/DQR0Ip+9yiKzZrC40uQ+Kin86s5TOjmL6UmxljOAfA==}

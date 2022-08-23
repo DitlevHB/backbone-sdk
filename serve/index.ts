@@ -3,7 +3,7 @@ import { log } from "../helper"
 import { Core } from "../lib/core"
 import fs from "fs"
 import { buf2hex, discoveryKey, randomBytes } from "@backbonedao/crypto"
-import crypto from 'crypto'
+import crypto from "crypto"
 
 global.crypto = crypto
 
@@ -34,30 +34,37 @@ async function task({
   manifest = { cwd: null, settings: { address: null, encryption_key: null } },
   local = false,
   address = "",
-  terminal
+  terminal,
 } = {}) {
-
   params = { manifest, local, address }
   // let core
   if (!fs.existsSync(`${manifest.cwd}/dist/app.min.js`)) {
     return log(`No compiled app found, please run 'compile' first.`, false, "red")
   }
+  process.env["LOG"] = "true"
+
+  const code = fs.readFileSync(`${manifest.cwd}/dist/app.min.js`, "utf-8")
+  let ui = fs.readFileSync(`${manifest.cwd}/dist/ui.min.js`, "utf-8")
+  //const app = Function(code + ";return app")()
+  let app = require(`${manifest.cwd}/src/app`)
+  if (app?.default) app = app.default
+
   if (!local) {
     // TODO: Create some sort of check to see if core actually contains the code
     core = await Core({
       config: { ...manifest.settings, address: manifest.app.address, storage: "raf", disable_timeout: true },
+      app,
     })
-    log(`Serving backbone://${manifest.app.address}...`)
+    log(
+      `Serving at backbone://${manifest.app.address} (https://browser.backbonedao.com/${manifest.app.address}${
+        manifest.settings.encryption_key ? "#" + manifest.settings.encryption_key : ""
+      })...`
+    )
+    if (manifest.settings.encryption_key) log(`Encryption key: ${manifest.settings.encryption_key}`)
   } else {
-    process.env["LOG"] = "true"
-    const code = fs.readFileSync(`${manifest.cwd}/dist/app.min.js`, "utf-8")
-    let ui = fs.readFileSync(`${manifest.cwd}/dist/ui.min.js`, "utf-8")
-    //const app = Function(code + ";return app")()
-    const app = require(`${manifest.cwd}/src/app`)
- 
-    const local_address = address
-      ? address.replace("backbone://", "")
-      : `0x${buf2hex(discoveryKey(randomBytes(32)))}`
+    log(`Starting in local mode`)
+
+    const local_address = address ? address.replace("backbone://", "") : `0x${buf2hex(discoveryKey(randomBytes(32)))}`
 
     params.address = local_address
     core = await Core({
@@ -77,10 +84,10 @@ async function task({
       },
     })
 
-    const code_exists = await core.meta._getMeta('code')
-    if(!code_exists) throw new Error('error storing code')
-    const manifest_exists = await core.meta._getMeta('manifest')
-    if(!manifest_exists) throw new Error('error storing manifest')
+    const code_exists = await core.meta._getMeta("code")
+    if (!code_exists) throw new Error("error storing code")
+    const manifest_exists = await core.meta._getMeta("manifest")
+    if (!manifest_exists) throw new Error("error storing manifest")
 
     log(
       `Serving local code at backbone://${local_address} (https://browser.backbonedao.com/${local_address}${
