@@ -4,7 +4,7 @@
   "description": "core/sdk",
   "scripts": {
     "test": "tape test/test.js",
-    "build": "rimraf ./dist && tsc && cp -R init/template/ dist/init/"
+    "build": "rimraf ./dist && tsc && cpr init/template/ dist/init/template"
   },
   "bin": {
     "backbone": "dist/index.js",
@@ -40,6 +40,7 @@
     "axios": "^0.26.1",
     "b4a": "^1.6.0",
     "commander": "^9.4.0",
+    "cpr": "^3.0.1",
     "exec-sh": "^0.4.0",
     "fs-extra": "^10.1.0",
     "msgpackr": "^1.6.2",
