@@ -12,6 +12,6 @@ export default async function(op, Data) {
       break
     }
     default:
-      throw new Error('UNKNOWN OP')
+      return Data.discard(op, "unknown operation")
   }
 }
