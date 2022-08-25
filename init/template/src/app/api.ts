@@ -22,5 +22,8 @@ export default async function (Data, Protocol) {
         value,
       })
     },
+    async onAdd(cb: Function) {
+      return Data.onAdd(cb)
+    }
   }
 }

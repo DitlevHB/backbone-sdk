@@ -11,8 +11,8 @@ After you've installed the SDK, you are able to use `bb` or `backbone` commands 
 git clone https://github.com/backbonedao/sdk.git
 
 # create a symlink from `lib/core` to `../core`
-mklink /J lib\core ..\core # Windows (use command prompt in admin mode)
-ln -s ../../core lib/core # Linux & macOS
+mklink /J core ..\core # Windows (use command prompt in admin mode)
+ln -s ../core core # Linux & macOS
 
 # install dependencies
 npx pnpm i
@@ -36,6 +36,9 @@ npm link
 
 # scaffolds a new Backbone app project in an empty directory
 > bb init
+
+# start development server
+> bb dev
 
 # compile app and user interface into minimized bundles
 > bb compile

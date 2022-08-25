@@ -7,6 +7,7 @@ import getCurrentProject from "./utils/get-current-project"
 import getExistingFiles from "./utils/existing-files"
 import initProject from "./init"
 import compileProject from "./compile"
+import devProject from "./dev"
 import releaseProject from "./release"
 import deployProject from "./deploy"
 import serveProject from "./serve"
@@ -111,6 +112,19 @@ program
     const { dir } = await getProjectDetails(options)
 
     await compileProject({ dir, ...options })
+    process.exit(0)
+  })
+
+  // DEV
+program
+  .command("dev")
+  .description("Start a development server")
+  .action(async (options) => {
+    await common()
+
+    const { dir } = await getProjectDetails(options)
+
+    await devProject({ dir, ...options })
     process.exit(0)
   })
 
