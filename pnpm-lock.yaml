@@ -64,11 +64,10 @@ dependencies:
   msgpackr: 1.6.2
   semver: 7.3.7
   terminal-kit: 2.5.1
-  ts-node: 10.9.1_itmtyrrie7wpjnrpwbb5uqyzwa
 
 devDependencies:
   '@backbonedao/data-db': github.com/backbonedao/data-db/f9183393adde39e84d166d8ac900844b295dc689
-  '@backbonedao/data-manager': github.com/backbonedao/data-manager/f8328b738089bcf9e9f1565a83fcb5189665e501_22kvxa7zeyivx4jp72v2w3pkvy
+  '@backbonedao/data-manager': github.com/backbonedao/data-manager/df4f1159995da6f80b280678e449247f391b7922_22kvxa7zeyivx4jp72v2w3pkvy
   '@backbonedao/data-viewer': github.com/backbonedao/data-viewer/ffec23b193114ab57435447e7fbf3400a4b33292
   '@backbonedao/network-node': github.com/backbonedao/network-node/86d972e93c4825e9f260f6ae23eca9344cd41e74_22kvxa7zeyivx4jp72v2w3pkvy
   '@jest/globals': 27.5.1
@@ -97,6 +96,7 @@ devDependencies:
   sodium-javascript: 0.8.0
   streamx: 2.12.5
   ts-jest: 27.1.5_g4n3hsjlbmz4ag5o32ytojordu
+  ts-node: 10.9.1_itmtyrrie7wpjnrpwbb5uqyzwa
   ttl: 1.3.1
   typescript: 4.7.4
   uglify-js: 3.16.3
@@ -453,6 +453,7 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
+    dev: true
 
   /@electron/get/1.14.1:
     resolution: {integrity: sha512-BrZYyL/6m0ZXz/lDxy/nlVhQz+WF+iPS6qXolEU8atw7h6v1aYkjwJZ63m+bJMBTxDE66X+r2tPS4a/8C82sZw==}
@@ -1054,6 +1055,7 @@ packages:
   /@jridgewell/resolve-uri/3.1.0:
     resolution: {integrity: sha512-F2msla3tad+Mfht5cJq7LSXcdudKTWCVYUgw6pLFOOHSTtZlj6SWNYAp+AhuqLmWdBO2X5hPrLcu8cVP8fy28w==}
     engines: {node: '>=6.0.0'}
+    dev: true
 
   /@jridgewell/set-array/1.1.2:
     resolution: {integrity: sha512-xnkseuNADM0gt2bs+BvhO0p78Mk762YnZdsuzFV018NoG1Sj1SCQvpSqa7XUaTam5vAGasABV9qXASMKnFMwMw==}
@@ -1062,6 +1064,7 @@ packages:
 
   /@jridgewell/sourcemap-codec/1.4.14:
     resolution: {integrity: sha512-XPSJHWmi394fuUuzDnGz1wiKqWfo1yXecHQMRf2l6hztTO+nPru658AyDngaBe7isIxEkRsPR3FZh+s7iVa4Uw==}
+    dev: true
 
   /@jridgewell/trace-mapping/0.3.14:
     resolution: {integrity: sha512-bJWEfQ9lPTvm3SneWwRFVLzrh6nhjwqw7TUFFBEMzwvg7t7PCDenf2lDwqo4NQXzdpgBXyFgDWnQA+2vkruksQ==}
@@ -1075,6 +1078,7 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
+    dev: true
 
   /@juliangruber/tap-finished/0.0.2:
     resolution: {integrity: sha512-Q7XSxMiTHPYoIpQJDH8FM1UJh9KFyKi52ETVtbZ2GU/Gbj2NqkJGADUNjeqUbPwqziO6sb+iTfY0cZr9m2O4lQ==}
@@ -1295,15 +1299,19 @@ packages:
 
   /@tsconfig/node10/1.0.9:
     resolution: {integrity: sha512-jNsYVVxU8v5g43Erja32laIDHXeoNvFEpX33OK4d6hljo3jDhCBDhx5dhCCTMWUojscpAagGiRkBKxpdl9fxqA==}
+    dev: true
 
   /@tsconfig/node12/1.0.11:
     resolution: {integrity: sha512-cqefuRsh12pWyGsIoBKJA9luFu3mRxCA+ORZvA4ktLSzIuCUtWVxGIuXigEwO5/ywWFMZ2QEGKWvkZG1zDMTag==}
+    dev: true
 
   /@tsconfig/node14/1.0.3:
     resolution: {integrity: sha512-ysT8mhdixWK6Hw3i1V2AeRqZ5WfXg1G43mqoYlM2nc6388Fq5jcXyr5mRsqViLx/GJYdoL0bfXD8nmF+Zn/Iow==}
+    dev: true
 
   /@tsconfig/node16/1.0.3:
     resolution: {integrity: sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==}
+    dev: true
 
   /@types/babel__core/7.1.19:
     resolution: {integrity: sha512-WEOTgRsbYkvA/KCsDwVEGkd7WAr1e3g31VHQ8zy5gul/V1qKullU/BU5I68X5v7V3GnB9eotmom4v5a5gjxorw==}
@@ -1372,6 +1380,7 @@ packages:
 
   /@types/node/18.7.8:
     resolution: {integrity: sha512-/YP55EMK2341JkODUb8DM9O0x1SIz2aBvyF33Uf1c76St3VpsMXEIW0nxuKkq/5cxnbz0RD9cfwNZHEAZQD3ag==}
+    dev: true
 
   /@types/prettier/2.7.0:
     resolution: {integrity: sha512-RI1L7N4JnW5gQw2spvL7Sllfuf1SaHdrZpCHiBlCXjIlufi1SMNnbu2teze3/QE67Fg2tBlH7W+mi4hVNk4p0A==}
@@ -1428,6 +1437,7 @@ packages:
   /acorn-walk/8.2.0:
     resolution: {integrity: sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==}
     engines: {node: '>=0.4.0'}
+    dev: true
 
   /acorn/7.4.1:
     resolution: {integrity: sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==}
@@ -1439,6 +1449,7 @@ packages:
     resolution: {integrity: sha512-QOxyigPVrpZ2GXT+PFyZTl6TtOFc5egxHIP9IlQ+RbupQuX4RkT/Bee4/kQuC02Xkzg84JcT7oLYtDIQxp+v7w==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+    dev: true
 
   /aes-js/3.0.0:
     resolution: {integrity: sha512-H7wUZRn8WpTq9jocdxQ2c8x2sKo9ZVmzfRE13GiNJXfp7NcKYEdvl3vspKjXox6RIG2VtaRe4JFvxG4rqp2Zuw==}
@@ -1505,6 +1516,7 @@ packages:
 
   /arg/4.1.3:
     resolution: {integrity: sha512-58S9QDqG0Xx27YwPSt9fJxivjYl432YCwfDMfZ+71RAqUrZef7LrKQZ3LHLOwCS4FLNBplP533Zx895SeOCHvA==}
+    dev: true
 
   /argparse/1.0.10:
     resolution: {integrity: sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==}
@@ -2105,6 +2117,7 @@ packages:
 
   /create-require/1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
+    dev: true
 
   /cross-env/7.0.3:
     resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
@@ -2403,6 +2416,7 @@ packages:
   /diff/4.0.2:
     resolution: {integrity: sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==}
     engines: {node: '>=0.3.1'}
+    dev: true
 
   /dns-packet/5.4.0:
     resolution: {integrity: sha512-EgqGeaBB8hLiHLZtp/IbaDQTL8pZ0+IvwzSHA6d7VyMDM+B9hgddEMa9xjK5oYnw0ci0JQ6g2XCD7/f6cafU6g==}
@@ -4420,6 +4434,7 @@ packages:
 
   /make-error/1.3.6:
     resolution: {integrity: sha512-s8UhlNe7vPKomQhC1qFelMokr/Sc3AgNbso3n74mVPA5LTZwkB9NlXf4XPamLxJE8h0gh73rM94xvwRT2CVInw==}
+    dev: true
 
   /makeerror/1.0.12:
     resolution: {integrity: sha512-JmqCvUhmt43madlpFzG4BQzG2Z3m6tvQDNKdClZnO3VbIudJYmxsT0FNJMeiB2+JTSlTQTSbU8QdesVmwJcmLg==}
@@ -6464,6 +6479,7 @@ packages:
       typescript: 4.7.4
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
+    dev: true
 
   /ttl/1.3.1:
     resolution: {integrity: sha512-+bGy9iDAqg3WSfc2ZrprToSPJhZjqy7vUv9wupQzsiv+BVPVx1T2a6G4T0290SpQj+56Toaw9BiLO5j5Bd7QzA==}
@@ -6517,6 +6533,7 @@ packages:
     resolution: {integrity: sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==}
     engines: {node: '>=4.2.0'}
     hasBin: true
+    dev: true
 
   /uglify-js/3.16.3:
     resolution: {integrity: sha512-uVbFqx9vvLhQg0iBaau9Z75AxWJ8tqM9AV890dIZCLApF4rTcyHwmAvLeEdYRs+BzYWu8Iw81F79ah0EfTXbaw==}
@@ -6630,6 +6647,7 @@ packages:
 
   /v8-compile-cache-lib/3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
+    dev: true
 
   /v8-to-istanbul/8.1.1:
     resolution: {integrity: sha512-FGtKtv3xIpR6BYhvgH8MI/y78oT7d8Au3ww4QIxymrCtZEh5b8gCw2siywE+puhEmuWKDtmfrvF5UlB298ut3w==}
@@ -6966,6 +6984,7 @@ packages:
   /yn/3.1.1:
     resolution: {integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==}
     engines: {node: '>=6'}
+    dev: true
 
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
@@ -7009,11 +7028,11 @@ packages:
       streamx: 2.12.5
     dev: true
 
-  github.com/backbonedao/data-manager/f8328b738089bcf9e9f1565a83fcb5189665e501_22kvxa7zeyivx4jp72v2w3pkvy:
-    resolution: {tarball: https://codeload.github.com/backbonedao/data-manager/tar.gz/f8328b738089bcf9e9f1565a83fcb5189665e501}
-    id: github.com/backbonedao/data-manager/f8328b738089bcf9e9f1565a83fcb5189665e501
+  github.com/backbonedao/data-manager/df4f1159995da6f80b280678e449247f391b7922_22kvxa7zeyivx4jp72v2w3pkvy:
+    resolution: {tarball: https://codeload.github.com/backbonedao/data-manager/tar.gz/df4f1159995da6f80b280678e449247f391b7922}
+    id: github.com/backbonedao/data-manager/df4f1159995da6f80b280678e449247f391b7922
     name: '@backbonedao/data-manager'
-    version: 1.0.0
+    version: 1.0.1
     dependencies:
       b4a: 1.6.0
       blake2b-universal: 1.0.1
@@ -7021,6 +7040,7 @@ packages:
       hypercore: github.com/backbonedao/data/bebbe70ecaaddac72a087020e556a248d06c9a8b_22kvxa7zeyivx4jp72v2w3pkvy
       hypercore-crypto: github.com/backbonedao/crypto/96da6514fe5ba8e1afadfc02f8db14d0c1a2b793_22kvxa7zeyivx4jp72v2w3pkvy
       safety-catch: 1.0.2
+      sodium-javascript: 0.8.0
       sodium-universal: 3.1.0
       xache: 1.1.0
     transitivePeerDependencies:
@@ -7055,7 +7075,7 @@ packages:
     name: '@backbonedao/data'
     version: 1.0.1
     dependencies:
-      '@backbonedao/secret-stream': github.com/backbonedao/secret-stream/319f94acca4ba61f1c8d73db41aa96beeef58fab_22kvxa7zeyivx4jp72v2w3pkvy
+      '@backbonedao/secret-stream': github.com/backbonedao/secret-stream/a593d0bf916bbfe5e1874aa28b41672e82efc31a_22kvxa7zeyivx4jp72v2w3pkvy
       b4a: 1.6.0
       big-sparse-array: 1.0.2
       bits-to-bytes: 1.3.0
@@ -7094,7 +7114,7 @@ packages:
     dependencies:
       '@backbonedao/crypto': github.com/backbonedao/crypto/96da6514fe5ba8e1afadfc02f8db14d0c1a2b793_22kvxa7zeyivx4jp72v2w3pkvy
       '@backbonedao/noise-handshake': github.com/backbonedao/noise-handshake/4f27d3ea1b7e4fd7601163d38847f9067d98b6d2_22kvxa7zeyivx4jp72v2w3pkvy
-      '@backbonedao/secret-stream': github.com/backbonedao/secret-stream/319f94acca4ba61f1c8d73db41aa96beeef58fab_22kvxa7zeyivx4jp72v2w3pkvy
+      '@backbonedao/secret-stream': github.com/backbonedao/secret-stream/a593d0bf916bbfe5e1874aa28b41672e82efc31a_22kvxa7zeyivx4jp72v2w3pkvy
       '@hyperswarm/secret-stream': 5.2.0
       b4a: 1.6.0
       bind-easy: 1.1.2
@@ -7194,15 +7214,17 @@ packages:
       varint: 5.0.0
     dev: true
 
-  github.com/backbonedao/secret-stream/319f94acca4ba61f1c8d73db41aa96beeef58fab_22kvxa7zeyivx4jp72v2w3pkvy:
-    resolution: {tarball: https://codeload.github.com/backbonedao/secret-stream/tar.gz/319f94acca4ba61f1c8d73db41aa96beeef58fab}
-    id: github.com/backbonedao/secret-stream/319f94acca4ba61f1c8d73db41aa96beeef58fab
+  github.com/backbonedao/secret-stream/a593d0bf916bbfe5e1874aa28b41672e82efc31a_22kvxa7zeyivx4jp72v2w3pkvy:
+    resolution: {tarball: https://codeload.github.com/backbonedao/secret-stream/tar.gz/a593d0bf916bbfe5e1874aa28b41672e82efc31a}
+    id: github.com/backbonedao/secret-stream/a593d0bf916bbfe5e1874aa28b41672e82efc31a
     name: '@backbonedao/secret-stream'
     version: 1.0.0
+    requiresBuild: true
     dependencies:
       '@backbonedao/crypto': github.com/backbonedao/crypto/96da6514fe5ba8e1afadfc02f8db14d0c1a2b793_22kvxa7zeyivx4jp72v2w3pkvy
       '@backbonedao/noise-curve-secp256k1': github.com/backbonedao/noise-curve-secp256k1/a6b059710825967f95677c5bd9223fb58caa3671_22kvxa7zeyivx4jp72v2w3pkvy
       '@backbonedao/noise-handshake': github.com/backbonedao/noise-handshake/4f27d3ea1b7e4fd7601163d38847f9067d98b6d2_22kvxa7zeyivx4jp72v2w3pkvy
+      '@milahu/patch-package': 6.4.14
       b4a: 1.6.0
       noise-handshake: 2.2.0
       sodium-javascript: 0.8.0

@@ -2,4 +2,3 @@ example
 node_modules
 bin
 dist
-lib/core
