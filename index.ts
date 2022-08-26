@@ -11,6 +11,7 @@ import devProject from "./dev"
 import releaseProject from "./release"
 import deployProject from "./deploy"
 import serveProject from "./serve"
+import infoProject from "./info"
 
 const terminal = term()
 
@@ -115,7 +116,7 @@ program
     process.exit(0)
   })
 
-  // DEV
+// DEV
 program
   .command("dev")
   .description("Start a development server")
@@ -171,6 +172,15 @@ program
 
     await serveProject({ manifest, terminal, ...options })
     // process.exit(0)
+  })
+
+// INFO
+program
+  .command("info")
+  .description("Show device info for debugging")
+  .action(async (options) => {
+    await common()
+    await infoProject()
   })
 
 // CATCH-ALL
