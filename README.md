@@ -12,9 +12,6 @@ git clone https://github.com/backbonedao/sdk.git
 
 # run setup
 npm run setup
-
-# install bb command (note: might fail on Windows - https://github.com/backbonedao/sdk/issues/3)
-npm link
 ```
 
 ## Usage

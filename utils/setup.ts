@@ -12,8 +12,9 @@ const { exec } = require("child_process")
   log(`Building Core...`)
   await runNPM(`${dir}/lib/core`, "npm run build:node")
   log(`Building SDK...`)
-  await runNPM(dir, "npm run build")
-  log("All done!")
+  await runNPM(dir, "npm run build && npm link")
+  log("All done! Try to run `bb` - you should get a help menu.")
+  log("If something went wrong, jump to our Discord (https://dsc.gg/backbonedao) and we'll help you.", false, 'yellow')
 })()
 
 async function runNPM(dir, npmcmd) {
@@ -42,7 +43,7 @@ async function runNPM(dir, npmcmd) {
 }
 
 async function initSubmodules(dir) {
-  const cmd = `cd ${dir} && git submodule init && git submodule pull`
+  const cmd = `cd ${dir} && git submodule init && git submodule update`
   return new Promise((resolve, reject) => {
     const git = exec(cmd)
     let errors = false
