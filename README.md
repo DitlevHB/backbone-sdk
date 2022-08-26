@@ -10,17 +10,10 @@ After you've installed the SDK, you are able to use `bb` or `backbone` commands 
 # clone the repo (NPM package not yet available)
 git clone https://github.com/backbonedao/sdk.git
 
-# create a symlink from `lib/core` to `../core`
-mklink /J core ..\core # Windows (use command prompt in admin mode)
-ln -s ../core core # Linux & macOS
+# run setup
+npm run setup
 
-# install dependencies
-npx pnpm i
-
-# build the SDK
-npm run build
-
-# install bb command (note: fails on Windows - https://github.com/backbonedao/sdk/issues/3)
+# install bb command (note: might fail on Windows - https://github.com/backbonedao/sdk/issues/3)
 npm link
 ```
 
