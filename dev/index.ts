@@ -16,12 +16,7 @@ async function task(opts: { dir: string }) {
     )
     return
   }
-  if (!fs.existsSync(`${dir}/core/dist/core.min.js`)) {
-    log(`No core.min.js found`, false, "red")
-    log(`\n^+Did you remember to symlink Core repository and npm run build it?`)
-    log(`See https://github.com/backbonedao/sdk for how to do the symlink.`)
-    return
-  }
+ 
   // install dependencies
   log(`Starting a development server...`)
   const cmd = `cd ${dir} && npm run dev`
