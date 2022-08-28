@@ -18,7 +18,8 @@
     "types": ["node"],
     "resolveJsonModule": true
   },
-  "exclude": ["**/tests", "**/dist", "**/test", "**/*.spec.*", "**/*.test.*", "**/tmp", "**/_"],
+  "include": ["./src/app"],
+  "exclude": ["**/tests", "**/dist", "**/test", "**/*.spec.*", "**/*.test.*", "**/tmp", "**/_", "**/node_modules"],
   "ts-node": {
     "files": true
   }

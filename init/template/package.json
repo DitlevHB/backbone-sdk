@@ -4,7 +4,7 @@
   "description": "Backbone App",
   "main": "src/index.js",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite -c vite.config-dev.js",
     "build:watch": "budo src/index.ts --live --dir tests/www --port 1337 -- -p [ tsify ]",
     "build:full": "npm run build:ui && npm run build:app && npm run build:minify:app && npm run build:minify:ui",
     "build:app": "mkdirp dist && browserify src/app/index.ts --standalone app -p [ tsify ] > dist/app.js",
