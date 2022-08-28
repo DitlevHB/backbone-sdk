@@ -15,7 +15,7 @@ async function task(opts: { signature?: string; manifest: any; update_registry?:
   if (!ui) ui = ""
   const checksum = buf2hex(createHash(manifest + app + ui))
 
-  log(`Version: ${backbonejson.app.version} (found in backbone.json)`)
+  log(`Version: ${backbonejson.app.version} (from backbone.json)`)
   log(`Checksum for signing: ${checksum}`)
   log(
     `Instructions: Go to your Backbone Id (https://id.backbonedao.com) and either create a new app or release for an app. Input above checksum where asked.`

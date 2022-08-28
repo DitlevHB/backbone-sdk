@@ -1,4 +1,4 @@
-import DataModel from '../../../core/dist/node/models'
+import DataModel from '../../../sdk/lib/core/dist/node/models'
 
 // Example of model with migration
 // For more info, read 

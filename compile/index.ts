@@ -7,7 +7,7 @@ async function task(opts: {
   const { dir } = { ...opts }
 
   // install dependencies
-  log(`Compiling and minifying...`)
+  log(`Compiling and optimizing... (this can take a few minutes depending on your application size)`)
   const cmd = `cd ${dir} && npm run build:full`
   return new Promise((resolve, reject) => {
     const npm = exec(cmd)

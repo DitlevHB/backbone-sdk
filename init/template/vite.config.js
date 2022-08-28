@@ -13,21 +13,16 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "/index.html"),
       },
-
       inlineDynamicImports: true,
       plugins: [],
     },
   },
   define: {
-    'process.env': {}
+    "process.env": {},
   },
   optimizeDeps: {
+    entries: [resolve(__dirname, "/index.html")],
     esbuildOptions: {
-      // Node.js global to browser globalThis
-      // define: {
-      //   global: "globalThis",
-      // },
-
       plugins: [],
     },
   },
