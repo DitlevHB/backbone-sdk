@@ -4,7 +4,7 @@ Backbone SDK is an all-in-one development tool for Backbone apps.
 
 After you've installed the SDK, you are able to use `bb` or `backbone` commands to work with the SDK.
 
-## Installing
+## Installing via setup script
 
 ```bash
 # clone the repo (NPM package not yet available)
@@ -12,6 +12,33 @@ git clone https://github.com/backbonedao/sdk.git
 
 # run setup
 npm run setup
+```
+
+## Installing manually
+
+If the setup script fails for some reason, here are the steps to install manually.
+
+```bash
+# clone the repo (NPM package not yet available)
+git clone https://github.com/backbonedao/sdk.git
+
+# init git submodules to clone Core
+git submodule init && git submodule update
+# if submodule update fails, clone https://github.com/backbonedao/core.git to lib/core manually
+
+# install Core dependencies
+cd lib/core
+npx pnpm i
+
+# build Core
+npm run build:node
+
+# build SDK
+cd ../..
+npm run build
+
+# install bb command
+npm link
 ```
 
 ## Usage
