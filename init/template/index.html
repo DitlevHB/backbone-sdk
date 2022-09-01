@@ -77,6 +77,7 @@
       }
 
       window["backbone"].app = await bb.Core({ config: { ...Config.settings, address: dev_address }, app })
+      await window["backbone"].app.meta._setMeta({ key: 'manifest', value: Config.app })
       ui()
 
       console.log(`\n>>>>> DEVELOPMENT MODE <<<<<\n`)
