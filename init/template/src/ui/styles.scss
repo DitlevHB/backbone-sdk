@@ -20,71 +20,27 @@ body {
   .sub {
     color: white;
     text-align: center;
+
+    .sub-headline {
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
   }
-  #messages {
-    display: flex;
-    flex-direction: column;
-    background: #141414;
-    width: 80%;
-    position: relative;
-    margin: 0 auto;
-    border-radius: 10px;
-    margin-top: 20px;
-    border: 1px solid #ffffff1a;
-    box-shadow: 0px 0px 5px #000 inset;
+  .vertical-space {
+    margin-top: 50px;
+  }
+  
+  .list {
+    list-style: none;
+    display: inline-block; 
+	  text-align: left; 
 
-    table {
-      width: 100%;
-      padding: 10px;
-
-      td {
-        font-family: monospace !important;
-        color: green;
-        vertical-align: top;
-
-        &.pointer {
-          width: 10px;
-        }
-      }
+    li {
+      margin-top: 10px;
     }
-    form {
-      display: flex;
-      padding: 10px;
-      padding-top: 0px;
-
-      input[type="text"] {
-        flex: 1;
-      }
-      input[type="text"],
-      button {
-        background: #151515;
-        border: 1px solid #ffffff17;
-        height: 35px;
-        color: white;
-        border-radius: 30px;
-        width: 100%;
-        padding: 0px 14px;
-        padding-bottom: 1px;
-      }
-
-      input[type="text"]:focus,
-      input[type="text"]:focus-visible {
-        border: 1px solid #ffffff2e;
-        outline: none;
-      }
-      button {
-        width: auto;
-        background: linear-gradient(180deg, #e042ff 0%, #394bd5 100%);
-        border: 1px solid #ffffff21;
-        font-weight: bold;
-        text-transform: uppercase;
-        font-size: 1rem;
-        border-radius: 10px;
-        margin-left: 10px;
-        white-space: nowrap;
-        background: #6400f71a;
-        box-shadow: 0px 0px 2px #000;
-      }
-    }
+  }
+  
+  a {
+    color: yellow;
   }
 }
